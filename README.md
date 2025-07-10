@@ -1,7 +1,6 @@
-\
 # DEPI Program Schedule - README
 
-![DEPI Program Schedule Interface](https://depi-schedule-dotnet-track.w3spaces.com)
+![DEPI Program Schedule](https://depi-schedule-dotnet-track.w3spaces.com)
 
 ## Overview
 
