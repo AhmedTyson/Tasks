@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEPI Program Schedule</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.2s ease, transform 0.3s ease;
+        }
+        
+        :root {
+            /* Light Mode Variables */
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #343a40;
+            --text-secondary: #5c6bc0;
+            --text-accent: #1a237e;
+            --progress-bg: #e0e0e0;
+            --progress-fill: linear-gradient(90deg, #3949ab, #1a237e);
+            --header-bg: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            --week-bg: #e8eaf6;
+            --current-week-bg: #e3f2fd;
+            --current-week-border: #2196f3;
+            --milestone-bg: #e8f5e9;
+            --milestone-border: #4caf50;
+            --milestone-color: #2e7d32;
+            --highlight-bg: #fff8e1;
+            --highlight-border: #ffc107;
+            --highlight-color: #f57f17;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --border: #e0e0e0;
+            --toggle-bg: #e0e0e0;
+            --toggle-knob: #ffffff;
+            
+            /* Session Colors - Light Mode */
+            --technical-session: #3949ab;
+            --skills-freelancing: #43a047;
+            --freelancing: #7cb342;
+            --coaching: #f57c00;
+            --english: #ffb300;
+            --project-work: #8e24aa;
+        }
+        
+        .dark-mode {
+            /* Dark Mode Variables */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-card: #252525;
+            --text-primary: #e0e0e0;
+            --text-secondary: #9fa8da;
+            --text-accent: #c5cae9;
+            --progress-bg: #2d2d2d;
+            --progress-fill: linear-gradient(90deg, #7986cb, #5c6bc0);
+            --header-bg: linear-gradient(135deg, #0d47a1 0%, #1a237e 100%);
+            --week-bg: #303030;
+            --current-week-bg: #0d3a63;
+            --current-week-border: #2196f3;
+            --milestone-bg: #1b5e20;
+            --milestone-border: #4caf50;
+            --milestone-color: #a5d6a7;
+            --highlight-bg: #5d4037;
+            --highlight-border: #ffc107;
+            --highlight-color: #ffd54f;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --border: #333333;
+            --toggle-bg: #333333;
+            --toggle-knob: #3949ab;
+            
+            /* Session Colors - Dark Mode */
+            --technical-session: #7986cb;
+            --skills-freelancing: #66bb6a;
+            --freelancing: #9ccc65;
+            --coaching: #ff9800;
+            --english: #ffca28;
+            --project-work: #ba68c8;
+        }
+        
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: var(--toggle-bg);
+            border: none;
+            border-radius: 50px;
+            width: 60px;
+            height: 30px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            z-index: 10;
+        }
+        
+        .theme-toggle span {
+            display: block;
+            width: 22px;
+            height: 22px;
+            background: var(--toggle-knob);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        .dark-mode .theme-toggle span {
+            transform: translateX(30px);
+            background: #f5f5f5;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-accent);
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+        
+        .program-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .info-card i {
+            font-size: 2.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+        
+        .info-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--text-accent);
+        }
+        
+        .info-card p {
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        
+        .status-bar {
+            background: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .status-bar h3 {
+            color: var(--text-accent);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+        
+        .progress-container {
+            background: var(--progress-bg);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--progress-fill);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1s ease;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 15px auto 0;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        
+        .status-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .status-item {
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .status-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        
+        .status-label {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+        }
+        
+        .schedule-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px;
+        }
+        
+        .schedule-table thead {
+            background: var(--header-bg);
+            color: white;
+        }
+        
+        .schedule-table th {
+            padding: 18px 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        
+        .schedule-table th:first-child {
+            border-radius: 16px 0 0 0;
+        }
+        
+        .schedule-table th:last-child {
+            border-radius: 0 16px 0 0;
+        }
+        
+        .schedule-table tbody tr {
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.2s ease;
+        }
+        
+        .schedule-table tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-mode .schedule-table tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .schedule-table td {
+            padding: 16px 15px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            position: relative;
+        }
+        
+        .week-cell {
+            font-weight: 700;
+            color: var(--text-accent);
+            background-color: var(--week-bg);
+            font-size: 1.05rem;
+        }
+        
+        .date-cell {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .milestone-cell {
+            position: relative;
+        }
+        
+        .milestone {
+            display: inline-block;
+            background: var(--milestone-bg);
+            color: var(--milestone-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--milestone-border);
+        }
+        
+        .highlight {
+            display: inline-block;
+            background: var(--highlight-bg);
+            color: var(--highlight-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-left: 4px solid var(--highlight-border);
+        }
+        
+        .online-indicator {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+        }
+        
+        .physical-indicator {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 8px;
+            height: 8px;
+            background: #3949ab;
+            border-radius: 50%;
+        }
+        
+        .current-week {
+            background-color: var(--current-week-bg) !important;
+            position: relative;
+            box-shadow: inset 0 0 0 2px var(--current-week-border);
+        }
+        
+        .current-week td:first-child {
+            background: var(--header-bg);
+            color: white;
+        }
+        
+        /* Session Type Colors */
+        .session-technical {
+            background-color: rgba(57, 73, 171, 0.1);
+            color: var(--technical-session);
+            border-radius: 8px;
+        }
+        
+        .dark-mode .session-technical {
+            background-color: rgba(121, 134, 203, 0.1);
+        }
+        
+        .session-skills {
+            background-color: rgba(67, 160, 71, 0.1);
+            color: var(--skills-freelancing);
+            border-radius: 8px;
+        }
+        
+        .dark-mode .session-skills {
+            background-color: rgba(102, 187, 106, 0.1);
+        }
+        
+        .session-freelancing {
+            background-color: rgba(124, 179, 66, 0.1);
+            color: var(--freelancing);
+            border-radius: 8px;
+        }
+        
+        .dark-mode .session-freelancing {
+            background-color: rgba(156, 204, 101, 0.1);
+        }
+        
+        .session-coaching {
+            background-color: rgba(245, 124, 0, 0.1);
+            color: var(--coaching);
+            border-radius: 8px;
+        }
+        
+        .dark-mode .session-coaching {
+            background-color: rgba(255, 152, 0, 0.1);
+        }
+        
+        .session-english {
+            background-color: rgba(255, 179, 0, 0.1);
+            color: var(--english);
+            border-radius: 8px;
+        }
+        
+        .dark-mode .session-english {
+            background-color: rgba(255, 202, 40, 0.1);
+        }
+        
+        .session-project {
+            background-color: rgba(142, 36, 170, 0.1);
+            color: var(--project-work);
+            border-radius: 8px;
+        }
+        
+        .dark-mode .session-project {
+            background-color: rgba(186, 104, 200, 0.1);
+        }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .legend-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .legend-section h4 {
+            color: var(--text-accent);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--text-secondary);
+            padding-bottom: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.03);
+        }
+        
+        .dark-mode .legend-item {
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .legend-color.online {
+            position: relative;
+        }
+        
+        .legend-color.online::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 12px;
+            height: 12px;
+            background: #4caf50;
+            border-radius: 50%;
+            border: 2px solid var(--bg-card);
+        }
+        
+        .legend-color.physical::after {
+            background: #3949ab;
+        }
+        
+        .legend-label {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        
+        .completed-indicator {
+            position: relative;
+        }
+        
+        .completed-indicator::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: #4caf50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .program-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .info-card {
+                max-width: 100%;
+                padding: 18px;
+            }
+            
+            .schedule-table th {
+                padding: 14px 10px;
+                font-size: 0.95rem;
+            }
+            
+            .schedule-table td {
+                padding: 14px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .status-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .status-item {
+                min-width: 100%;
+            }
+            
+            .theme-toggle {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 20px;
+            }
+            
+            .legend {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="theme-toggle" id="theme-toggle">
+                <span></span>
+            </button>
+            <h1>DEPI Program</h1>
+            <p class="subtitle">Detailed Hourly Schedule - Round 3</p>
+            
+            <div class="program-info">
+                <div class="info-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Program Duration</h3>
+                    <p>24 Weeks (June 27 - December 5)</p>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Weekly Schedule</h3>
+                    <p>Saturday: 10AM-1PM (Physical)<br>
+                    Monday: 5PM-8PM (Online)<br>
+                    Thursday: 6PM-9PM (Online)</p>
+                </div>
+                
+                <div class="info-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Program Focus</h3>
+                    <p>Technical Skills Development<br>
+                    Freelancing Preparation<br>
+                    Professional Coaching</p>
+                </div>
+            </div>
+        </header>
+        
+        <div class="status-bar">
+            <h3>Program Progress</h3>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="progress-info">
+                <div>Start: June 27, 2023</div>
+                <div id="current-date">Today: Loading date...</div>
+                <div>End: December 5, 2023</div>
+            </div>
+            
+            <div class="status-content">
+                <div class="status-item">
+                    <div class="status-value" id="progress-percent">0%</div>
+                    <div class="status-label">Completed</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="weeks-completed">0</div>
+                    <div class="status-label">Weeks Completed</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="weeks-remaining">24</div>
+                    <div class="status-label">Weeks Remaining</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="schedule-container">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>Start Date</th>
+                        <th>Saturday</th>
+                        <th>Monday</th>
+                        <th>Thursday</th>
+                        <th>Key Milestones</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                    <!-- Schedule rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-section">
+                <h4>Session Types</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--technical-session);">TS</div>
+                    <div class="legend-label">Technical Session</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--skills-freelancing);">SF</div>
+                    <div class="legend-label">Skills for Freelancing</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--freelancing);">F</div>
+                    <div class="legend-label">Freelancing</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--coaching);">C</div>
+                    <div class="legend-label">Coaching for Hunting Opp.</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--english);">E</div>
+                    <div class="legend-label">English for Freelancing</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--project-work);">PW</div>
+                    <div class="legend-label">Project Work</div>
+                </div>
+            </div>
+            
+            <div class="legend-section">
+                <h4>Session Indicators</h4>
+                <div class="legend-item">
+                    <div class="legend-color online physical"></div>
+                    <div class="legend-label">Physical Session</div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color online"></div>
+                    <div class="legend-label">Online Session</div>
+                </div>
+            </div>
+            
+            <div class="legend-section">
+                <h4>Program Status</h4>
+                <div class="legend-item">
+                    <div style="background: #2196f3; width: 24px; height: 24px; border-radius: 6px;"></div>
+                    <div class="legend-label">Current Week</div>
+                </div>
+                <div class="legend-item">
+                    <div style="background: #4caf50; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">✓</div>
+                    <div class="legend-label">Completed Week</div>
+                </div>
+                <div class="legend-item">
+                    <div style="background: var(--milestone-bg); width: 24px; height: 24px; border-radius: 6px; border-left: 4px solid var(--milestone-border);"></div>
+                    <div class="legend-label">Milestone</div>
+                </div>
+                <div class="legend-item">
+                    <div style="background: var(--highlight-bg); width: 24px; height: 24px; border-radius: 6px; border-left: 4px solid var(--highlight-border);"></div>
+                    <div class="legend-label">Highlighted Event</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Check for saved theme preference or respect OS preference
+        if (localStorage.getItem('theme') === 'dark' || 
+            (window.matchMedia('(prefers-color-scheme: dark)').matches && !localStorage.getItem('theme'))) {
+            body.classList.add('dark-mode');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+        
+        // Program dates
+        const programStart = new Date('2025-06-27');
+        const programEnd = new Date('2025-12-05');
+        
+        // Set today to July 10, 2025 as requested
+        const today = new Date();
+        
+        // Calculate total program duration in days
+        const totalDays = Math.ceil((programEnd - programStart) / (1000 * 60 * 60 * 24));
+        
+        // Calculate elapsed days
+        let elapsedDays;
+        if (today < programStart) {
+            elapsedDays = 0;
+        } else if (today > programEnd) {
+            elapsedDays = totalDays;
+        } else {
+            elapsedDays = Math.ceil((today - programStart) / (1000 * 60 * 60 * 24));
+        }
+        
+        // Calculate progress percentage
+        const progressPercentage = Math.min(100, Math.round((elapsedDays / totalDays) * 100));
+        
+        // Calculate weeks completed
+        const weeksCompleted = Math.min(24, Math.floor(elapsedDays / 7));
+        
+        // Update progress bar
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.style.width = `${progressPercentage}%`;
+        
+        // Update progress info
+        document.getElementById('current-date').textContent = `Today: ${today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}`;
+        document.getElementById('progress-percent').textContent = `${progressPercentage}%`;
+        document.getElementById('weeks-completed').textContent = weeksCompleted;
+        document.getElementById('weeks-remaining').textContent = 24 - weeksCompleted;
+        
+        // Session type to class mapping
+        const sessionTypeMap = {
+            'Technical Session': 'session-technical',
+            'Skills for Freelancing': 'session-skills',
+            'Freelancing': 'session-freelancing',
+            'Coaching for Hunting Opp.': 'session-coaching',
+            'English for Freelancing': 'session-english',
+            'Project Work': 'session-project'
+        };
+        
+        // Schedule data
+        const scheduleData = [
+            { week: 1, date: 'Jun 27', sat: 'Technical Session', mon: 'Technical Session', thu: 'Skills for Freelancing', milestone: '' },
+            { week: 2, date: 'Jul 4', sat: 'Technical Session', mon: 'Technical Session', thu: 'Skills for Freelancing', milestone: 'Team Leaders', milestoneClass: 'milestone' },
+            { week: 3, date: 'Jul 11', sat: 'Technical Session', mon: 'Technical Session', thu: 'Skills for Freelancing', milestone: '' },
+            { week: 4, date: 'Jul 18', sat: 'Technical Session', mon: 'Technical Session', thu: 'Skills for Freelancing', milestone: '' },
+            { week: 5, date: 'Jul 25', sat: 'Technical Session', mon: 'Technical Session', thu: 'Skills for Freelancing', milestone: 'Project Announcement', milestoneClass: 'milestone' },
+            { week: 6, date: 'Aug 1', sat: 'Technical Session', mon: 'Technical Session', thu: 'Skills for Freelancing', milestone: '' },
+            { week: 7, date: 'Aug 8', sat: 'Technical Session', mon: 'Technical Session', thu: 'Freelancing', milestone: 'Assessment 1 (10 Sessions)', milestoneClass: 'milestone' },
+            { week: 8, date: 'Aug 15', sat: 'Technical Session', mon: 'Technical Session', thu: 'Freelancing', milestone: 'Project Group Formation', milestoneClass: 'milestone' },
+            { week: 9, date: 'Aug 22', sat: 'Technical Session', mon: 'Technical Session', thu: 'Freelancing', milestone: '' },
+            { week: 10, date: 'Aug 29', sat: 'Technical Session', mon: 'Technical Session', thu: 'Freelancing', milestone: 'Project Break-down', milestoneClass: 'milestone' },
+            { week: 11, date: 'Sep 5', sat: 'Technical Session', mon: 'Technical Session', thu: 'Freelancing', milestone: '' },
+            { week: 12, date: 'Sep 12', sat: 'Technical Session', mon: 'Technical Session', thu: 'Freelancing', milestone: '' },
+            { week: 13, date: 'Sep 19', sat: 'Technical Session', mon: 'Technical Session', thu: 'Coaching for Hunting Opp.', milestone: '' },
+            { week: 14, date: 'Sep 26', sat: 'Technical Session', mon: 'Technical Session', thu: 'Coaching for Hunting Opp.', milestone: '' },
+            { week: 15, date: 'Oct 3', sat: 'Technical Session', mon: 'Technical Session', thu: 'Coaching for Hunting Opp.', milestone: 'Assessment 2 (25 Sessions)', milestoneClass: 'milestone' },
+            { week: 16, date: 'Oct 10', sat: 'Technical Session', mon: 'Technical Session', thu: 'Coaching for Hunting Opp.', milestone: '' },
+            { week: 17, date: 'Oct 17', sat: 'Technical Session', mon: 'Technical Session', thu: 'Coaching for Hunting Opp.', milestone: '' },
+            { week: 18, date: 'Oct 24', sat: 'Technical Session', mon: 'English for Freelancing', thu: 'Coaching for Hunting Opp.', milestone: 'Project Prototype', milestoneClass: 'milestone' },
+            { week: 19, date: 'Oct 31', sat: 'Technical Session', mon: 'English for Freelancing', thu: 'Coaching for Hunting Opp.', milestone: '' },
+            { week: 20, date: 'Nov 7', sat: 'Technical Session', mon: 'English for Freelancing', thu: 'Coaching for Hunting Opp.', milestone: 'Project Final Presentation', milestoneClass: 'milestone' },
+            { week: 21, date: 'Nov 14', sat: 'Technical Session', mon: 'English for Freelancing', thu: 'Coaching for Hunting Opp.', milestone: '' },
+            { week: 22, date: 'Nov 21', sat: 'Technical Session', mon: 'English for Freelancing', thu: 'Coaching for Hunting Opp.', milestone: '' },
+            { week: 23, date: 'Nov 28', sat: 'Technical Session', mon: 'English for Freelancing', thu: 'Project Work', milestone: '' },
+            { week: 24, date: 'Dec 5', sat: 'Project Work', mon: 'Project Work', thu: 'Project Work', milestone: 'Project Discussion', milestoneClass: 'highlight' }
+        ];
+        
+        // Generate schedule table
+        const scheduleBody = document.getElementById('schedule-body');
+        
+        scheduleData.forEach(weekData => {
+            const row = document.createElement('tr');
+            
+            // Calculate the start date of this week
+            const weekStart = new Date(programStart);
+            weekStart.setDate(weekStart.getDate() + (weekData.week - 1) * 7);
+            
+            // Add current week class if applicable
+            if (today >= weekStart && today < new Date(weekStart.getTime() + 7 * 24 * 60 * 60 * 1000)) {
+                row.classList.add('current-week');
+            }
+            
+            // Add completed class if the week has passed
+            if (today > weekStart) {
+                row.classList.add('completed-indicator');
+            }
+            
+            // Create session cells with appropriate classes
+            const satClass = sessionTypeMap[weekData.sat] || '';
+            const monClass = sessionTypeMap[weekData.mon] || '';
+            const thuClass = sessionTypeMap[weekData.thu] || '';
+            
+            row.innerHTML = `
+                <td class="week-cell">${weekData.week}</td>
+                <td class="date-cell">${weekData.date}</td>
+                <td class="session-cell ${satClass}">${weekData.sat} <div class="physical-indicator"></div></td>
+                <td class="session-cell ${monClass}">${weekData.mon} <div class="online-indicator"></div></td>
+                <td class="session-cell ${thuClass}">${weekData.thu} <div class="online-indicator"></div></td>
+                <td class="milestone-cell">${weekData.milestone ? `<span class="${weekData.milestoneClass || ''}">${weekData.milestone}</span>` : ''}</td>
+            `;
+            
+            scheduleBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
