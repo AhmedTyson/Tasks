@@ -1,6 +1,6 @@
-# CollegeDB - Comprehensive College Management System
+# CollegeDB: A Relational Database Project
 
-A robust, enterprise-grade database management system designed for educational institutions, featuring complete student lifecycle management, course administration, and advanced analytics capabilities.
+A foundational SQL database project for managing a college's core academic operations. This project demonstrates the fundamentals of relational database design, implementation, and querying using SQL Server.
 
 ## Overview
 
@@ -12,38 +12,32 @@ The system tackles critical problems in educational administration:
 - **Performance Issues**: Optimized queries and indexing strategies for large-scale educational data
 - **Compliance Requirements**: Built-in audit trails and data validation to meet educational standards
 
+## Database Schema
+
+The core of this project is its relational schema, designed to ensure data integrity and efficient querying. The database includes tables for `Person` (differentiating between Students and Instructors), `Course`, `Department`, `StudentGrade`, and more.
+
+The relationships between these tables are illustrated in the Entity-Relationship Diagram (ERD) below.
+
+<img src="CollegeDB_ERD - Task 5.png" alt="CollegeDB ERD" width="500">
+
 ## Features
 
-### 🏗️ **Comprehensive Database Architecture**
-- **9 Core Tables**: Person, Course, Department, Category, StudentGrade, CourseInstructor, OfficeAssignment, OnsiteCourse, OnlineCourse
-- **11 Foreign Key Relationships**: Ensures complete referential integrity across all entities
-- **Hybrid Course Model**: Supports both online and on-site course delivery methods
-
-### 🔐 **Enterprise Security**
-- **Role-Based Access Control (RBAC)**: Four distinct user roles with granular permissions
-  - **RegistrarRole**: Full CRUD operations on student and course data
-  - **InstructorRole**: Course management and grade assignment capabilities
-  - **StudentRole**: Read-only access to course catalogs and personal academic records
-  - **AnalystRole**: Comprehensive reporting and analytics access
-- **17 Security Permissions**: Fine-grained access control across all database objects
-
-### 📊 **Advanced Analytics & Reporting**
-- **4 Analytical Views**: Pre-built dashboards for institutional insights
-  - `vw_CourseDetails`: Complete course catalog with department and category information
-  - `vw_StudentSummary`: Student academic performance metrics and GPA calculations
-  - `vw_InstructorWorkload`: Faculty teaching loads and office assignments
-  - `vw_DepartmentStats`: Department-level analytics including budget utilization
-
-### ⚡ **Performance Optimization**
-- **5 Strategic Indexes**: Optimized query performance for frequently accessed data
-- **Stored Procedures**: Efficient, reusable business logic implementation
-- **Data Validation**: 4 check constraints ensuring data quality and business rule compliance
-
-### 🔄 **Automated Business Processes**
-- **sp_EnrollStudent**: Automated student enrollment with validation
-- **sp_UpdateGrade**: Secure grade management with audit trails
-- **sp_GetStudentTranscript**: Instant transcript generation
-
+- **Data Modeling**: Logical schema with 9 tables and 11 foreign key relationships to maintain data integrity1.
+    
+- **Student & Course Management**: Tracks student enrollments, grades, and course details, including distinctions between online and onsite courses1.
+    
+- **Instructor & Department Info**: Manages instructor assignments, office locations, and departmental budgets1.
+    
+- **Data-Driven Views**: Pre-built SQL views to easily summarize key information, such as:
+    
+    - `vw_CourseDetails`: Full catalog of all courses offered.
+        
+    - `vw_StudentSummary`: GPA and total credits for each student.
+        
+    - `vw_InstructorWorkload`: Courses taught by each instructor.
+        
+- **Stored Procedures**: Simple procedures for common actions like enrolling a student (`sp_EnrollStudent`) and updating a grade (`sp_UpdateGrade`)1.
+    
 ## Tech Stack
 
 ### Database Engine
@@ -189,32 +183,19 @@ ORDER BY CoursesTeaching DESC;
 - **Error Handling**: Implemented comprehensive error management with custom messaging
 - **Documentation Standards**: Created maintainable code with extensive inline documentation
 
-## Screenshots/Demo
-
-### Database Schema Overview
-The Entity-Relationship Diagram showcases the comprehensive data model with 9 interconnected tables, demonstrating the complexity and thoroughness of the database design.
-
-[image:1](CollegeDB_ERD - Task 5.png)
-
-### Analytics Dashboard
-The system provides powerful analytical views that transform raw educational data into actionable insights for administrators and decision-makers.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact / Connect with Me
 
-**[Your Name]** - Database Solutions Architect & Full-Stack Developer
+**[Ahmed Elsayed]** - Full-Stack .NET Developer
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/ahmed-elsayed-8b9bba28a)
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AhmedTyson)
 
 ### Let's Connect!
-I'm passionate about building scalable database solutions and educational technology. Whether you're interested in discussing database architecture, educational systems, or potential collaboration opportunities, I'd love to hear from you!
+I'd love to hear your feedback or collaborate on future projects. You can connect with me on LinkedIn or explore my other projects on GitHub.
 
-**Technical Expertise**: SQL Server, Database Design, Performance Optimization, Security Architecture, Educational Technology
+
 
 ---
 
-⭐ **If you found this project valuable, please consider giving it a star!** Your support helps others discover quality educational database solutions.
+
