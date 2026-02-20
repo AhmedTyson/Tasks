@@ -1,14 +1,19 @@
-# Tasks
+# <img src="https://api.iconify.design/lucide:book-open.svg?color=%238A2BE2" width="32" height="32" align="center" /> Tasks Archive
 
-> A structured learning archive of academic and training tasks spanning SQL database design, C# programming, and web development exercises.
+> **A structured ledger of academic and training tasks.**
+> Covering SQL database architecture, C# programming, and full-stack web development exercises.
 
-![SQL](https://img.shields.io/badge/SQL-T--SQL-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-.NET-239120?style=for-the-badge&logo=csharp&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+<div align="center">
+
+| Project Status | Core Tech                                                                                                        | Focus Areas              | Methodology           |
+| :------------- | :--------------------------------------------------------------------------------------------------------------- | :----------------------- | :-------------------- |
+| `ACTIVE`       | ![SQL](https://img.shields.io/badge/SQL-T--SQL-CC2927?style=flat-square&logo=microsoftsqlserver&logoColor=white) | `Database, Backend, Web` | `Iterative Lab Tasks` |
+
+</div>
 
 ---
 
-## 📋 Table of Contents
+## <img src="https://api.iconify.design/lucide:list.svg?color=%238A2BE2" width="20" height="20" align="center" /> Table of Contents
 
 - [Overview](#overview)
 - [SQL Tasks](#-sql-tasks)
@@ -28,7 +33,9 @@ The repository is organized into three domains — **SQL**, **C#**, and **Web** 
 
 ---
 
-## 🗄️ SQL Tasks
+---
+
+## <img src="https://api.iconify.design/lucide:database.svg?color=%238A2BE2" width="20" height="20" align="center" /> SQL Tasks
 
 | Task                   | Description                                                                                                                                                        |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -42,7 +49,9 @@ The repository is organized into three domains — **SQL**, **C#**, and **Web** 
 
 ---
 
-## 🔷 C# Tasks
+---
+
+## <img src="https://api.iconify.design/lucide:hash.svg?color=%238A2BE2" width="20" height="20" align="center" /> C# Tasks
 
 | Task       | Description                                        |
 | ---------- | -------------------------------------------------- |
@@ -55,7 +64,9 @@ The repository is organized into three domains — **SQL**, **C#**, and **Web** 
 
 ---
 
-## 🌐 Web Tasks
+---
+
+## <img src="https://api.iconify.design/lucide:globe.svg?color=%238A2BE2" width="20" height="20" align="center" /> Web Tasks
 
 | File                   | Description                                                  |
 | ---------------------- | ------------------------------------------------------------ |
@@ -63,7 +74,9 @@ The repository is organized into three domains — **SQL**, **C#**, and **Web** 
 
 ---
 
-## 💻 Tech Stack
+---
+
+## <img src="https://api.iconify.design/lucide:cpu.svg?color=%238A2BE2" width="20" height="20" align="center" /> Tech Stack
 
 | Domain       | Technology                                                     |
 | ------------ | -------------------------------------------------------------- |
@@ -73,7 +86,9 @@ The repository is organized into three domains — **SQL**, **C#**, and **Web** 
 
 ---
 
-## 📁 Project Structure
+---
+
+## <img src="https://api.iconify.design/lucide:folder-tree.svg?color=%238A2BE2" width="20" height="20" align="center" /> Project Structure
 
 ```
 Tasks/
@@ -99,7 +114,9 @@ Tasks/
 
 ---
 
-## 🚀 Getting Started
+---
+
+## <img src="https://api.iconify.design/lucide:rocket.svg?color=%238A2BE2" width="20" height="20" align="center" /> Getting Started
 
 ```bash
 # Clone the repository
