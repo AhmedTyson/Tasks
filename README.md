@@ -1,98 +1,36 @@
-# DEPI Program Schedule - README
+# Tasks
 
-[DEPI Program Schedule](DEPI-schedule.html)
+> A personal repository of academic and training tasks spanning SQL, C#, and web development — maintained as a structured learning archive.
 
 ## Overview
 
-The DEPI Program Schedule is a modern, responsive web application that displays a detailed schedule for the DEPI Graduates Program (Round 3). It features dynamic progress tracking, color-coded session types, and a seamless light/dark mode toggle.
+This repository serves as a curated archive of assignments and exercises completed across multiple training programs and academic courses. It is organized into two primary sections: **SQL Tasks** containing database design, query, and data manipulation exercises, and **C# Tasks** covering object-oriented programming and .NET fundamentals. An additional `DEPI-schedule.html` page provides a visual schedule reference. The repository is maintained as a personal progress ledger rather than a deployable application.
 
-## Features
+## 💻 Tech Stack
 
-- **Dynamic Progress Tracking**: Real-time calculation of program progress based on current date
-- **Color-Coded Sessions**: Each session type has a distinct color scheme
-  - Technical Sessions (Blue)
-  - Skills for Freelancing (Green)
-  - Freelancing (Light Green)
-  - Coaching (Orange)
-  - English for Freelancing (Yellow)
-  - Project Work (Purple)
-- **Light/Dark Mode**: Toggle between themes with one click
-- **Current Week Highlighting**: Automatically highlights the current week
-- **Responsive Design**: Works on all device sizes
-- **Comprehensive Legend**: Clear visual indicators for all elements
-- **Program Statistics**: Shows weeks completed and remaining
+- **Query Language:** SQL (T-SQL)
+- **Language:** C# (.NET)
+- **Web:** HTML
 
-## Technology Stack
+## ✨ Key Features
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6)
-- **Icons**: Font Awesome 6
-- **Design**: CSS Variables, Flexbox, Grid
-- **Responsiveness**: Media Queries
+- **SQL Exercises:** Structured query tasks covering SELECT, JOIN, aggregation, and schema design.
+- **C# Assignments:** OOP exercises including classes, inheritance, interfaces, and collections.
+- **DEPI Schedule Page:** An HTML page displaying a training program schedule for reference.
+- **Organized Structure:** Tasks are separated into clearly labeled numbered folders.
 
-## Getting Started
+## 🚀 Getting Started
 
-To run this project locally, simply:
+```bash
+# Clone the repository
+git clone https://github.com/AhmedTyson/Tasks.git
 
-1. Download the HTML file
-2. Open it in any modern web browser
-3. No additional dependencies required
+# Navigate to the directory
+cd Tasks
 
-## Usage
+# Browse SQL tasks
+cd "1. SQL Tasks"
 
-1. **Toggle Theme**: Click the circular button at the top right to switch between light and dark modes
-2. **View Progress**: See program completion percentage and weeks completed/remaining
-3. **Navigate Schedule**: Scroll through the interactive schedule table
-4. **Identify Sessions**: Use the legend to understand color coding and indicators
-
-## Key Components
-
-### 1. Program Information Cards
-- Program Duration
-- Weekly Schedule
-- Program Focus
-
-### 2. Progress Tracking
-- Visual progress bar
-- Percentage completed
-- Weeks statistics
-
-### 3. Interactive Schedule
-- Color-coded session types
-- Physical vs online indicators
-- Milestone markers
-- Current week highlighting
-
-### 4. Comprehensive Legend
-- Session types
-- Location indicators
-- Status markers
-
-## Code Structure
-
-```plaintext
-DEPI-schedule.html
-├── CSS Styles
-│   ├── Theme Variables (Light/Dark)
-│   ├── Responsive Design
-│   ├── Session Type Colors
-│   └── Animations & Transitions
-├── HTML Structure
-│   ├── Header with Theme Toggle
-│   ├── Program Information Cards
-│   ├── Progress Tracking Section
-│   ├── Interactive Schedule Table
-│   └── Comprehensive Legend
-└── JavaScript
-    ├── Theme Switching Logic
-    ├── Progress Calculation
-    ├── Current Date Handling
-    └── Schedule Generation
+# Browse C# tasks
+cd "../2. C# Tasks"
 ```
-
-## Customization
-
-To modify the program dates or content:
-1. Update the `programStart` and `programEnd` dates in the JavaScript section
-2. Modify the `scheduleData` array to change session content
-3. Adjust color variables in the `:root` and `.dark-mode` sections to change the color scheme
-
